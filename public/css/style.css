@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    width: 100vw;
+}
+.container {
+    width: 80vw;
+    display: flex;
+}
+
+.card {
+    padding: 15px;
+    margin: 1.5rem;
+    background-color: rgba(0,0,0,0.08);
+}
+
+#laptop-selected-card {
+    padding: 10px;
+    margin: 1.5rem;
+    display: flex;
+    background-color: rgba(0,0,0,0.08);
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.025);
+}
+
+#laptop-selected-card img {
+    width: 200px;
+    margin-right: 2rem;
+}
+
+.small-container {
+    margin-right: 2rem;
+}
+
+.small-container:last-child {
+    margin-right: 0;
+}

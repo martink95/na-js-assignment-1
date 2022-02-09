@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Komputer Store</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div id="header">
+            <h1>Komputer Store</h1>
+        </div>
+        <div class="container">
+            <div class="card">
+                <p class="card-heading">Martin Kanestrøm</p>
+                <p class="card-paragraph">Balance: <span id="bank-balance">200</span> NOK</p>
+                <p class="card-paragraph" id="outstanding-loan-balance"></p>
+                <p class="error-message" id="balance-error"></p>
+                <button id="loan-button">Get a loan</button>
+            </div>
+            <div class="card">
+                <p class="card-heading">Work</p>
+                <p class="card-paragraph">pay <span id="work-balance">0</span> NOK</p>
+                <div class="button-container">
+                    <button id="bank-button">Bank</button>
+                    <button id="work-button">Work</button>
+                    <button id="repay-button">Repay loan</button>
+                </div>
+            </div>
+            <div class="card">
+                <p class="card-heading">Laptops</p>
+                <select id="laptop-selection">
+        
+                </select>
+                <p class="features-heading">Features</p>
+                <ul id="features-list">
+    
+                </ul>
+            </div>
+        </div>
+        <div class="container">
+            <div id="laptop-selected-card">
+                
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
