@@ -1,13 +1,13 @@
-const bankBalanceElement = document.getElementById("bank-balance");
-const workBalanceElement = document.getElementById("work-balance");
-const workButton = document.getElementById("work-button");
-const bankButton = document.getElementById("bank-button");
-const loanButton = document.getElementById("loan-button");
-const repayButton = document.getElementById("repay-button");
-const errorMessageElement = document.getElementById("balance-error");
-const outstandingLoanElement = document.getElementById("outstanding-loan-balance");
-const laptopSelectionElement = document.getElementById("laptop-selection");
-const selectedLaptopCard = document.getElementById("laptop-selected-card");
+const bankBalanceElement = document.getElementById("balance__bank");
+const workBalanceElement = document.getElementById("balance__work");
+const workButton = document.getElementById("btn__work");
+const bankButton = document.getElementById("btn__bank");
+const loanButton = document.getElementById("btn__loan");
+const repayButton = document.getElementById("btn__repay");
+const errorMessageElement = document.getElementById("error__balance");
+const outstandingLoanElement = document.getElementById("balance__outstanding-loan");
+const laptopSelectionElement = document.getElementById("laptop__select");
+const selectedLaptopCard = document.getElementById("selected__card");
 
 let balance = 0;
 let loanBalance = 0;
@@ -79,46 +79,66 @@ const getOutstandingLoanString = () => {
     return `Outstanding loan: ${loanBalance} NOK`;
 }
 
-let laptopInformation = fetch("https://noroff-komputer-store-api.herokuapp.com/computers")
+let laptopInformation = () => fetch("https://noroff-komputer-store-api.herokuapp.com/computers")
 .then(res => res.json())
-.then(data => createLaptopSelection(data));
+.then(data => {
+    createLaptopSelection(data),
+    createFeaturesList(data[0].specs)
+    createLaptopInformation(data[0])
+});
 
-let createLaptopSelection = (data) => {
+let createLaptopSelection = (data, id) => {
+    if(id == null) id = 0;
+    let _id = id;
     for(let laptop of data) {
         laptopSelectionElement.appendChild(new Option(laptop.title, laptop.id))
     }
-    //createFeaturesList(data[0])
-    createLaptopInformation(data[0]);
 }
+laptopInformation();
 
-let createFeaturesList = (features) => {
-    const featuresList = document.getElementById("features-list");
+let createFeaturesList = async (features) => {
+    const featuresList = document.getElementById("features__list");
+    featuresList.innerHTML = "";
     for(let feature of features) {
-        let featureItem = document.createElement("LI");
-        featureItem.appendChild(feature)
-        featuresList.appendChild(featureItem);
+        featuresList.innerHTML += `<li>${feature}</li>`;
     }
-}
+};
 
 let createLaptopInformation = (laptop) => {
     selectedLaptopCard.innerHTML = `
     <img src="https://noroff-komputer-store-api.herokuapp.com/${laptop.image}" alt="${laptop.title}"/>
-    <div class="small-container">
-        <p class="card-heading" id="laptop-heading">${laptop.title}</p>
-        <p id="laptop-description">${laptop.description}</p>
+    <div class="container--small">
+        <p class="card__heading" id="laptop__heading">${laptop.title}</p>
+        <p id="laptop__description">${laptop.description}</p>
     </div>
-    <div class="small-container">
-        <p class="card-paragraph"><span id="laptop-price">${laptop.price}</span> NOK</p>
-        <button id="laptop-buy-button" data-price="${laptop.price} data-title="${laptop.title}"}>Buy now</button>
+    <div class="container--small">
+        <p class="card__paragraph"><span id="laptop-price">${laptop.price}</span> NOK</p>
+        <button class="btn btn-primary" id="btn__buy" value="${laptop.id}"}>Buy now</button>
     </div>`;
+    const laptopBuyButton = document.getElementById("btn__buy");
+    laptopBuyButton.addEventListener("click", () => {
+        buyLaptop(laptop.price);
+    })
 }
 
-const laptopBuyButton = document.getElementById("laptop-buy-button");
-laptopBuyButton.addEventListener("click", () => {
-
-})
 let buyLaptop = (laptopPrice) => {
-    if(laptopPrice < balance) {
-        alert("You've successfully bought a new computer.")
+    if(laptopPrice <= balance) {
+        balance -= laptopPrice;
+        bankBalanceElement.innerHTML = balance;
+        alert(`You've successfully bought a new computer for ${laptopPrice} NOK`)
     }
+    else {
+        alert("You can't afford this product yet, please work more.")
+    }
+
 }
+
+laptopSelectionElement.addEventListener("change", (e) => {
+    let laptopInformation = () => fetch("https://noroff-komputer-store-api.herokuapp.com/computers")
+.then(res => res.json())
+.then(data => {
+    createFeaturesList(data[1].specs)
+    createLaptopInformation(data[1])
+});
+    
+})
