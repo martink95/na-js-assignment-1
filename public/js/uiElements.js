@@ -1,0 +1,10 @@
+export const bankBalanceElement = document.getElementById("balance__bank");
+export const workBalanceElement = document.getElementById("balance__work");
+export const workButton = document.getElementById("btn__work");
+export const bankButton = document.getElementById("btn__bank");
+export const loanButton = document.getElementById("btn__loan");
+export const repayButton = document.getElementById("btn__repay");
+export const errorMessageElement = document.getElementById("error__balance");
+export const outstandingLoanElement = document.getElementById("balance__outstanding-loan");
+export const laptopSelectionElement = document.getElementById("laptop__select");
+export const selectedLaptopCard = document.getElementById("selected__card");
