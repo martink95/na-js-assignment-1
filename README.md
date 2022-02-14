@@ -8,29 +8,16 @@ Movie API created for Noroff assignment
 - [Install](#install)
 - [Usage](#usage)
 - [Maintainers](#maintainers)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Install
 
-```
-```
+git clone repo -> have fun
 
 ## Usage
 
-```
-```
+index.html
 
 ## Maintainers
 
 [@martink95](https://github.com/martink95)
 
-## Contributing
-
-
-
-Small note: If editing the README, please conform to the [standard-readme](https://github.com/RichardLitt/standard-readme) specification.
-
-## License
-
-MIT © 2022 Martin Kanestrøm
