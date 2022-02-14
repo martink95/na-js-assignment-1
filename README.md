@@ -1,7 +1,7 @@
 # na-js-assignment-1
 
 
-Movie API created for Noroff assignment
+work-bank-computershop thingy created for Noroff assignment
 
 ## Table of Contents
 
